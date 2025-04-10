@@ -3,7 +3,7 @@ name: Artifact Workflow
 on:
   push:
     branches:
-      - main  # Use your branch name if it's not main
+      - master
 
 jobs:
   create_artifact:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Create sample.txt
+      - name: Create a sample.txt file
         run: echo "Sample artifact content" > sample.txt
 
       - name: Upload artifact
@@ -22,8 +22,8 @@ jobs:
           path: sample.txt
 
   use_artifact:
-    runs-on: ubuntu-latest
     needs: create_artifact
+    runs-on: ubuntu-latest
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
